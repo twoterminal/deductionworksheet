@@ -1,355 +1,1092 @@
-<!doctype html>
-<html lang="en-US">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Self-Employed Deduction Calculator | IRS Worksheet Calculator</title>
-  <meta name="description" content="Use this free Self-Employed Deduction Calculator to calculate the maximum deductible contribution for a SEP IRA or qualified plan using the IRS Deduction Worksheet for Self-Employed.">
-  <meta name="robots" content="index,follow,max-image-preview:large">
-  <link rel="canonical" href="https://example.com/self-employed-deduction-calculator">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Self-Employed Deduction Calculator">
-  <meta property="og:description" content="Enter a few numbers and automatically work through the IRS Deduction Worksheet for Self-Employed.">
-  <meta property="og:url" content="https://example.com/self-employed-deduction-calculator">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Self-Employed Deduction Calculator">
-  <meta name="twitter:description" content="Calculate your maximum deductible self-employed retirement plan contribution using the IRS worksheet method.">
+    <meta charset="UTF-8">
 
-  <link rel="stylesheet" href="styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"WebApplication",
-    "name":"Self-Employed Deduction Calculator",
-    "applicationCategory":"FinanceApplication",
-    "operatingSystem":"Web",
-    "description":"Calculator based on the IRS Deduction Worksheet for Self-Employed in Publication 560.",
-    "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}
-  }
-  </script>
+    <title>Self-Employed Deduction Calculator | Tax Planning Toolkit</title>
 
-  <script type="application/ld+json" id="faqSchema">
-  {
-    "@context":"https://schema.org",
-    "@type":"FAQPage",
-    "mainEntity":[
-      {"@type":"Question","name":"What is the Self-Employed Deduction Calculator?","acceptedAnswer":{"@type":"Answer","text":"It is an independent calculator that follows the IRS Deduction Worksheet for Self-Employed methodology to estimate the maximum deductible contribution for an eligible self-employed individual."}},
-      {"@type":"Question","name":"How many numbers do I need to enter?","acceptedAnswer":{"@type":"Answer","text":"For the fastest route, enter the tax year, net business profit, plan contribution rate, and the deduction for one-half of self-employment tax from Schedule 1, line 15. Optional contribution fields appear only when they apply."}},
-      {"@type":"Question","name":"Why do I need the deduction for one-half of self-employment tax?","acceptedAnswer":{"@type":"Answer","text":"The IRS worksheet uses the deduction for self-employment tax from Schedule 1, Form 1040, line 15 as Step 2. The calculator uses that amount rather than making unsupported assumptions about the taxpayer's complete Schedule SE situation."}},
-      {"@type":"Question","name":"Does the calculator calculate the self-employed rate automatically?","acceptedAnswer":{"@type":"Answer","text":"Yes. Whole-number plan rates use the IRS Rate Table. Non-whole-number rates use the IRS Rate Worksheet formula and are rounded to at least three decimal places before the deduction worksheet is calculated."}},
-      {"@type":"Question","name":"Can I use this for a SEP IRA?","acceptedAnswer":{"@type":"Answer","text":"The IRS Publication 560 worksheet states that a SEP plan is treated as a profit-sharing plan for this worksheet. The IRS also cautions that the worksheet applies only to self-employed individuals with one defined contribution plan and should not be used for SARSEPs."}},
-      {"@type":"Question","name":"Is this an IRS calculator?","acceptedAnswer":{"@type":"Answer","text":"No. It is an independent educational tool based on IRS publications and worksheets and is not operated, endorsed, or approved by the IRS."}}
-    ]
-  }
-  </script>
+    <meta name="description"
+          content="Calculate your potential self-employed retirement plan deduction using a worksheet-based approach. Free calculator and practical tax planning resources for self-employed individuals.">
+
+    <meta name="keywords"
+          content="self employed deduction calculator, self employed tax calculator, retirement plan deduction, SEP IRA calculator, self employed tax planning">
+
+    <meta name="author" content="Self-Employed Deduction Calculator">
+
+    <meta property="og:title"
+          content="Self-Employed Deduction Calculator">
+
+    <meta property="og:description"
+          content="Use our free calculator to work through the self-employed retirement plan deduction worksheet.">
+
+    <meta property="og:type" content="website">
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.6;
+            color: #172033;
+            background: #ffffff;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .container {
+            width: 92%;
+            max-width: 1150px;
+            margin: auto;
+        }
+
+        /* NAVIGATION */
+
+        header {
+            background: #ffffff;
+            border-bottom: 1px solid #e8edf3;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            min-height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 21px;
+            font-weight: 800;
+            color: #1261a0;
+        }
+
+        .logo span {
+            color: #16a36a;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #374151;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .nav-links a:hover {
+            color: #1261a0;
+        }
+
+        .nav-btn {
+            background: #1261a0;
+            color: white !important;
+            padding: 10px 17px;
+            border-radius: 7px;
+        }
+
+        /* HERO */
+
+        .hero {
+            background: linear-gradient(135deg, #eef7ff, #ffffff);
+            padding: 90px 0 80px;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #e1f5ec;
+            color: #11734a;
+            padding: 7px 13px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(38px, 5vw, 62px);
+            line-height: 1.08;
+            margin-bottom: 22px;
+            color: #101828;
+        }
+
+        .hero h1 span {
+            color: #1261a0;
+        }
+
+        .hero p {
+            font-size: 19px;
+            color: #536174;
+            max-width: 650px;
+            margin-bottom: 30px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            background: #1261a0;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background: #0d4d80;
+        }
+
+        .btn-secondary {
+            display: inline-block;
+            background: white;
+            color: #1261a0;
+            border: 2px solid #1261a0;
+            padding: 13px 24px;
+            border-radius: 8px;
+            font-weight: 700;
+        }
+
+        .hero-note {
+            margin-top: 18px;
+            font-size: 13px;
+            color: #687386;
+        }
+
+        /* CALCULATOR CARD */
+
+        .calculator-card {
+            background: white;
+            border-radius: 18px;
+            padding: 30px;
+            box-shadow: 0 20px 55px rgba(24, 56, 91, 0.15);
+            border: 1px solid #e4ebf2;
+        }
+
+        .calculator-icon {
+            width: 64px;
+            height: 64px;
+            background: #1261a0;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 30px;
+            margin-bottom: 20px;
+        }
+
+        .calculator-card h2 {
+            font-size: 26px;
+            margin-bottom: 12px;
+        }
+
+        .calculator-card p {
+            font-size: 15px;
+            color: #667085;
+            margin-bottom: 22px;
+        }
+
+        .calculator-list {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        .calculator-list li {
+            margin-bottom: 12px;
+            color: #344054;
+            font-size: 14px;
+        }
+
+        .calculator-list li::before {
+            content: "✓";
+            color: #16a36a;
+            font-weight: bold;
+            margin-right: 9px;
+        }
+
+        /* SECTION */
+
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            max-width: 750px;
+            margin: 0 auto 50px;
+        }
+
+        .section-title h2 {
+            font-size: 38px;
+            margin-bottom: 15px;
+            color: #101828;
+        }
+
+        .section-title p {
+            color: #667085;
+            font-size: 17px;
+        }
+
+        /* FEATURES */
+
+        .features {
+            background: #f8fafc;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 30px;
+            border-radius: 14px;
+            border: 1px solid #e5eaf0;
+        }
+
+        .feature-number {
+            font-size: 15px;
+            font-weight: 800;
+            color: #1261a0;
+            margin-bottom: 15px;
+        }
+
+        .feature-card h3 {
+            font-size: 21px;
+            margin-bottom: 10px;
+        }
+
+        .feature-card p {
+            color: #667085;
+            font-size: 15px;
+        }
+
+        /* HOW IT WORKS */
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .step {
+            text-align: center;
+            padding: 25px 15px;
+        }
+
+        .step-circle {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            background: #1261a0;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 17px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .step h3 {
+            margin-bottom: 8px;
+        }
+
+        .step p {
+            font-size: 14px;
+            color: #667085;
+        }
+
+        /* PRODUCT */
+
+        .product-section {
+            background: #eef7ff;
+        }
+
+        .product-card {
+            max-width: 900px;
+            margin: auto;
+            background: white;
+            border-radius: 20px;
+            padding: 50px;
+            border: 1px solid #dce8f2;
+            box-shadow: 0 15px 40px rgba(24, 56, 91, 0.09);
+        }
+
+        .product-card h2 {
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+
+        .product-card > p {
+            color: #667085;
+            font-size: 17px;
+            margin-bottom: 30px;
+        }
+
+        .product-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .product-list div {
+            padding: 14px;
+            background: #f8fafc;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .product-list div::before {
+            content: "✓ ";
+            color: #16a36a;
+            font-weight: bold;
+        }
+
+        .coming-soon {
+            display: inline-block;
+            background: #fff4d6;
+            color: #8a5b00;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        /* FAQ */
+
+        .faq {
+            max-width: 850px;
+            margin: auto;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #e5e7eb;
+            padding: 22px 0;
+        }
+
+        .faq-item h3 {
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        .faq-item p {
+            color: #667085;
+            font-size: 15px;
+        }
+
+        /* CTA */
+
+        .cta {
+            background: #1261a0;
+            color: white;
+            text-align: center;
+        }
+
+        .cta h2 {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .cta p {
+            max-width: 650px;
+            margin: 0 auto 25px;
+            color: #e2edf7;
+        }
+
+        .cta .btn-primary {
+            background: white;
+            color: #1261a0;
+        }
+
+        /* DISCLAIMER */
+
+        .disclaimer {
+            background: #f8fafc;
+            padding: 30px 0;
+        }
+
+        .disclaimer p {
+            font-size: 12px;
+            color: #697586;
+            max-width: 950px;
+            margin: auto;
+            text-align: center;
+        }
+
+        /* FOOTER */
+
+        footer {
+            background: #101828;
+            color: #cbd5e1;
+            padding: 35px 0;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-links a {
+            color: #cbd5e1;
+            font-size: 13px;
+        }
+
+        .copyright {
+            font-size: 13px;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 850px) {
+
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .steps {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .product-list {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links a:not(.nav-btn) {
+                display: none;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 500px) {
+
+            .hero {
+                padding: 60px 0;
+            }
+
+            section {
+                padding: 60px 0;
+            }
+
+            .hero h1 {
+                font-size: 39px;
+            }
+
+            .hero p {
+                font-size: 17px;
+            }
+
+            .calculator-card {
+                padding: 23px;
+            }
+
+            .product-card {
+                padding: 28px 22px;
+            }
+
+            .product-card h2 {
+                font-size: 29px;
+            }
+
+            .steps {
+                grid-template-columns: 1fr;
+            }
+
+            .cta h2 {
+                font-size: 30px;
+            }
+        }
+
+    </style>
 </head>
 
 <body>
-<header class="site-header">
-  <div class="container nav">
-    <a class="brand" href="./">Self-Employed Deduction Calculator</a>
-    <nav class="navlinks" aria-label="Primary navigation">
-      <a href="#calculator">Calculator</a>
-      <a href="#how-it-works">How It Works</a>
-      <a href="#faq">FAQ</a>
-    </nav>
-  </div>
+
+<!-- NAVIGATION -->
+
+<header>
+    <div class="container">
+        <nav>
+
+            <a href="#" class="logo">
+                Self-Employed <span>Tax Tools</span>
+            </a>
+
+            <div class="nav-links">
+                <a href="#calculator">Calculator</a>
+                <a href="#how-it-works">How It Works</a>
+                <a href="#toolkit">Tax Toolkit</a>
+                <a href="#faq">FAQ</a>
+
+                <a href="#toolkit" class="nav-btn">
+                    Get Toolkit
+                </a>
+            </div>
+
+        </nav>
+    </div>
 </header>
 
 
+<!-- HERO -->
+
+<section class="hero">
+
+    <div class="container">
+
+        <div class="hero-grid">
+
+            <div>
+
+                <div class="badge">
+                    FREE SELF-EMPLOYED TAX CALCULATOR
+                </div>
+
+                <h1>
+                    Understand Your
+                    <span>Self-Employed Deduction</span>
+                </h1>
+
+                <p>
+                    Work through the self-employed retirement plan
+                    deduction calculation with a simple,
+                    easy-to-follow worksheet-based calculator.
+                </p>
+
+                <div class="hero-buttons">
+
+                    <a href="#calculator" class="btn-primary">
+                        Calculate for Free →
+                    </a>
+
+                    <a href="#toolkit" class="btn-secondary">
+                        Explore Tax Toolkit
+                    </a>
+
+                </div>
+
+                <div class="hero-note">
+                    No account required • Free calculator • Easy to use
+                </div>
+
+            </div>
 
 
-  
-<main>
-  <div class="container">
+            <!-- CALCULATOR CARD -->
 
-    <div class="ad ad-top" aria-label="Advertisement">
-      <span>ADVERTISEMENT</span>
-      <!-- Replace this placeholder with your Google AdSense responsive ad code. -->
+            <div class="calculator-card" id="calculator">
+
+                <div class="calculator-icon">
+                    $
+                </div>
+
+                <h2>
+                    Free Deduction Calculator
+                </h2>
+
+                <p>
+                    Quickly work through the major steps used
+                    to calculate a potential self-employed
+                    retirement plan deduction.
+                </p>
+
+                <ul class="calculator-list">
+
+                    <li>
+                        Select your tax year
+                    </li>
+
+                    <li>
+                        Enter your net business profit
+                    </li>
+
+                    <li>
+                        Enter your plan contribution rate
+                    </li>
+
+                    <li>
+                        Enter your self-employment tax deduction
+                    </li>
+
+                    <li>
+                        Review the calculated worksheet steps
+                    </li>
+
+                </ul>
+
+                <!-- CHANGE THIS LINK TO YOUR ACTUAL CALCULATOR PAGE -->
+
+                <a href="calculator.html" class="btn-primary">
+                    Open Free Calculator →
+                </a>
+
+            </div>
+
+        </div>
+
     </div>
 
-    <section class="hero">
-      <div class="hero-copy">
-        <span class="eyebrow">Free online tax calculator</span>
-        <h1>Self-Employed Deduction Calculator</h1>
-        <p>Calculate your maximum deductible contribution using the IRS Deduction Worksheet for Self-Employed — without manually working through all 21 worksheet steps.</p>
-        <div class="hero-points">
-          <span>✓ Automatic rate calculation</span>
-          <span>✓ 2024–2026 tax years</span>
-          <span>✓ Detailed IRS-style breakdown</span>
-        </div>
-      </div>
-    </section>
+</section>
 
-    <section id="calculator" class="calculator-layout">
-      <div class="calculator-card">
-        <div class="calculator-heading">
-          <div>
-            <span class="section-kicker">Step 1</span>
-            <h2>Enter the numbers you already have</h2>
-            <p>Instead of filling out the IRS worksheet line by line, enter the four core amounts below. The calculator handles the intermediate calculations.</p>
-          </div>
-          <div class="input-count"><strong>4</strong><span>core inputs</span></div>
+
+<!-- FEATURES -->
+
+<section class="features">
+
+    <div class="container">
+
+        <div class="section-title">
+
+            <h2>
+                A Simpler Way to Work Through the Calculation
+            </h2>
+
+            <p>
+                Designed to turn a complicated worksheet into
+                an easier step-by-step experience.
+            </p>
+
         </div>
 
-        <div class="form-grid">
-          <div class="field">
-            <label for="taxYear">Tax year</label>
-            <select id="taxYear">
-              <option value="2024">2024</option>
-              <option value="2025" selected>2025</option>
-              <option value="2026">2026</option>
-            </select>
-            <small id="yearHelp">IRS worksheet limits for 2025.</small>
-          </div>
 
-          <div class="field">
-            <label for="netProfit">Net business profit</label>
-            <div class="money-input">
-              <span>$</span>
-              <input id="netProfit" type="number" min="0" step="1" inputmode="decimal" placeholder="200000">
+        <div class="feature-grid">
+
+            <div class="feature-card">
+
+                <div class="feature-number">
+                    01
+                </div>
+
+                <h3>
+                    Step-by-Step
+                </h3>
+
+                <p>
+                    See the calculation broken down into
+                    individual worksheet steps rather than
+                    receiving only one final number.
+                </p>
+
             </div>
-            <small>Use the amount applicable to Step 1 of the IRS worksheet.</small>
-          </div>
 
-          <div class="field">
-            <label for="planRate">Plan contribution rate</label>
-            <div class="percent-input">
-              <input id="planRate" type="number" min="0.1" max="25" step="0.1" inputmode="decimal" placeholder="8.5">
-              <span>%</span>
+
+            <div class="feature-card">
+
+                <div class="feature-number">
+                    02
+                </div>
+
+                <h3>
+                    Multiple Tax Years
+                </h3>
+
+                <p>
+                    Select the applicable tax year and work
+                    through the corresponding calculation.
+                </p>
+
             </div>
-            <small>Example: enter <strong>8.5</strong> for an 8.5% plan contribution rate.</small>
-          </div>
 
-          <div class="field">
-            <label for="seTaxDeduction">Deduction for ½ of self-employment tax</label>
-            <div class="money-input">
-              <span>$</span>
-              <input id="seTaxDeduction" type="number" min="0" step="1" inputmode="decimal" placeholder="13596">
+
+            <div class="feature-card">
+
+                <div class="feature-number">
+                    03
+                </div>
+
+                <h3>
+                    Easy to Understand
+                </h3>
+
+                <p>
+                    Designed for self-employed individuals
+                    who want a clearer way to organize their
+                    calculation.
+                </p>
+
             </div>
-            <small>From Schedule 1 (Form 1040), line 15 — the IRS worksheet's Step 2.</small>
-          </div>
+
         </div>
 
-        <div class="why-box">
-          <strong>Why do we ask for this amount?</strong>
-          <p>The IRS worksheet specifically uses the deduction for self-employment tax from Schedule 1, line 15. Asking for the amount you already have avoids making assumptions about wages, other self-employment income, or special Schedule SE circumstances.</p>
-        </div>
-
-        <div class="advanced-heading">
-          <div>
-            <h3>Only if these apply to you</h3>
-            <p>Leave these off unless you made elective deferrals or catch-up contributions to the self-employed plan.</p>
-          </div>
-        </div>
-
-        <div class="conditional-grid">
-          <label class="check-card">
-            <input type="checkbox" id="hasDeferrals">
-            <span>
-              <strong>I made elective deferrals</strong>
-              <small>Show IRS Steps 9–15 and related fields.</small>
-            </span>
-          </label>
-
-          <label class="check-card">
-            <input type="checkbox" id="hasCatchup">
-            <span>
-              <strong>I made catch-up contributions</strong>
-              <small>Show IRS Steps 16–18 and the applicable catch-up input.</small>
-            </span>
-          </label>
-        </div>
-
-        <div id="deferralPanel" class="conditional-panel hidden">
-          <div class="field">
-            <label for="electiveDeferrals">Allowable elective deferrals</label>
-            <div class="money-input">
-              <span>$</span>
-              <input id="electiveDeferrals" type="number" min="0" step="1" inputmode="decimal" value="0">
-            </div>
-            <small id="deferralHelp">The IRS worksheet applies the annual elective-deferral limit for the selected year.</small>
-          </div>
-
-          <div class="field">
-            <label for="rothContributions">Designated Roth contributions included above</label>
-            <div class="money-input">
-              <span>$</span>
-              <input id="rothContributions" type="number" min="0" step="1" inputmode="decimal" value="0">
-            </div>
-            <small>Used for Step 20.</small>
-          </div>
-        </div>
-
-        <div id="catchupPanel" class="conditional-panel hidden">
-          <div class="field">
-            <label for="catchupContributions">Catch-up contributions</label>
-            <div class="money-input">
-              <span>$</span>
-              <input id="catchupContributions" type="number" min="0" step="1" inputmode="decimal" value="0">
-            </div>
-            <small id="catchupHelp">Enter the catch-up amount included in your plan contributions.</small>
-          </div>
-
-          <div class="field">
-            <label for="age">Age at year end</label>
-            <input id="age" type="number" min="0" max="120" step="1" inputmode="numeric" placeholder="50">
-            <small>Used only to identify the higher age 60–63 catch-up limit where applicable.</small>
-          </div>
-        </div>
-
-        <div class="actions">
-          <button class="btn-primary" id="calculateBtn" type="button">Calculate my deduction</button>
-          <button class="btn-secondary" id="resetBtn" type="button">Reset</button>
-        </div>
-
-        <div id="errorBox" class="error-box" role="alert" aria-live="assertive"></div>
-
-        <div id="result" class="result-card hidden" aria-live="polite">
-          <div class="result-label">Maximum deductible contribution</div>
-          <div id="maximumDeduction" class="result-amount">$0</div>
-          <p id="resultSummary"></p>
-
-          <div class="result-stats">
-            <div><span>Plan contribution rate</span><strong id="resultPlanRate">0%</strong></div>
-            <div><span>Self-employed rate</span><strong id="resultSelfRate">0.000</strong></div>
-            <div><span>Net earnings</span><strong id="resultNetEarnings">$0</strong></div>
-          </div>
-
-          <div class="rate-box">
-            <h3>Automatic rate calculation</h3>
-            <div class="rate-line"><span>Plan rate as decimal</span><strong id="rateDecimal">0.000</strong></div>
-            <div class="rate-line"><span>Rate + 1</span><strong id="ratePlusOne">1.000</strong></div>
-            <div class="rate-line"><span>Self-employed rate</span><strong id="rateResult">0.000</strong></div>
-          </div>
-
-          <details class="calculation-details" open>
-            <summary>Show my IRS worksheet calculation</summary>
-            <div id="steps"></div>
-          </details>
-
-          <div class="result-actions">
-            <button class="btn-secondary" id="printBtn" type="button">Print result</button>
-          </div>
-        </div>
-      </div>
-
-      <aside class="sidebar">
-        <div class="ad ad-side" aria-label="Advertisement">
-          <span>ADVERTISEMENT</span>
-        </div>
-
-        <div class="info-card">
-          <h3>What makes this faster?</h3>
-          <ul>
-            <li>You don't enter all 21 IRS worksheet lines.</li>
-            <li>The plan rate is converted automatically.</li>
-            <li>Whole-number rates use the IRS rate table.</li>
-            <li>Non-whole-number rates use the IRS rate worksheet.</li>
-            <li>Steps 9–20 appear only when they apply.</li>
-          </ul>
-        </div>
-
-        <div class="ad ad-side" aria-label="Advertisement">
-          <span>ADVERTISEMENT</span>
-        </div>
-      </aside>
-    </section>
-
-    <div class="ad ad-content" aria-label="Advertisement">
-      <span>ADVERTISEMENT</span>
     </div>
 
-    <section id="how-it-works" class="content-section">
-      <article class="content-card">
-        <span class="section-kicker">How it works</span>
-        <h2>From four core inputs to the IRS worksheet result</h2>
-        <p>The IRS Publication 560 worksheet starts with net profit and the deduction for self-employment tax, then calculates net earnings, applies a reduced self-employed contribution rate, and applies the applicable limits. This calculator performs those intermediate steps for you.</p>
+</section>
 
-        <div class="process-grid">
-          <div class="process-card"><span>01</span><h3>Enter your figures</h3><p>Tax year, net profit, plan contribution rate, and the Step 2 deduction amount.</p></div>
-          <div class="process-card"><span>02</span><h3>Calculate the rate</h3><p>We use the IRS Rate Table for whole-number rates and the Rate Worksheet formula for other rates.</p></div>
-          <div class="process-card"><span>03</span><h3>Run the worksheet</h3><p>Steps 3–8 are calculated automatically, with Steps 9–20 added only when applicable.</p></div>
-          <div class="process-card"><span>04</span><h3>Get your result</h3><p>The result shows the maximum deductible contribution and the calculation behind it.</p></div>
+
+<!-- HOW IT WORKS -->
+
+<section id="how-it-works">
+
+    <div class="container">
+
+        <div class="section-title">
+
+            <h2>
+                How It Works
+            </h2>
+
+            <p>
+                Four simple steps to work through your calculation.
+            </p>
+
         </div>
 
-        <h2>Why the plan contribution rate matters</h2>
-        <p>The IRS does not simply multiply your net profit by the plan's stated contribution rate. For a self-employed individual, the IRS uses a reduced contribution rate because the contribution itself affects the compensation calculation.</p>
 
-        <div class="formula">
-          <span>Self-employed rate</span>
-          <strong>plan rate ÷ (1 + plan rate)</strong>
+        <div class="steps">
+
+            <div class="step">
+
+                <div class="step-circle">
+                    1
+                </div>
+
+                <h3>
+                    Enter Information
+                </h3>
+
+                <p>
+                    Enter your tax year and relevant
+                    business information.
+                </p>
+
+            </div>
+
+
+            <div class="step">
+
+                <div class="step-circle">
+                    2
+                </div>
+
+                <h3>
+                    Calculate
+                </h3>
+
+                <p>
+                    The calculator processes the worksheet
+                    calculations.
+                </p>
+
+            </div>
+
+
+            <div class="step">
+
+                <div class="step-circle">
+                    3
+                </div>
+
+                <h3>
+                    Review
+                </h3>
+
+                <p>
+                    Review the individual calculation steps
+                    and resulting amount.
+                </p>
+
+            </div>
+
+
+            <div class="step">
+
+                <div class="step-circle">
+                    4
+                </div>
+
+                <h3>
+                    Plan
+                </h3>
+
+                <p>
+                    Use the information as one part of your
+                    broader tax planning process.
+                </p>
+
+            </div>
+
         </div>
 
-        <p>For example, an 8.5% plan contribution rate becomes 0.085. The worksheet then adds 1 to get 1.085 and divides 0.085 by 1.085. The result is rounded to at least three decimal places before being used in the deduction worksheet.</p>
-
-        <h2>2024–2026 calculator limits</h2>
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr><th>Limit</th><th>2024</th><th>2025</th><th>2026</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>Maximum compensation used</td><td>$345,000</td><td>$350,000</td><td>$360,000</td></tr>
-              <tr><td>Defined-contribution limit</td><td>$69,000</td><td>$70,000</td><td>$72,000</td></tr>
-              <tr><td>Elective deferral limit</td><td>$23,000</td><td>$23,500</td><td>$24,500</td></tr>
-              <tr><td>General catch-up limit</td><td>$7,500</td><td>$7,500</td><td>$8,000</td></tr>
-              <tr><td>Age 60–63 higher catch-up</td><td>—</td><td>$11,250</td><td>$11,250</td></tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="source-note">
-          <strong>IRS source:</strong>
-          <a href="https://www.irs.gov/publications/p560" target="_blank" rel="noopener">IRS Publication 560</a>.
-          The calculator follows the self-employed rate and deduction worksheet structure described by the IRS. Always verify the current IRS publication and forms before filing.
-        </div>
-      </article>
-    </section>
-
-    <div class="ad ad-content" aria-label="Advertisement">
-      <span>ADVERTISEMENT</span>
     </div>
 
-    <section id="faq" class="content-section">
-      <article class="content-card">
-        <span class="section-kicker">FAQ</span>
-        <h2>Self-Employed Deduction Calculator FAQs</h2>
+</section>
 
-        <details><summary>What is a Self-Employed Deduction Calculator?</summary><p>It is an independent calculator that follows the IRS Deduction Worksheet for Self-Employed methodology to estimate the maximum deductible contribution for an eligible self-employed individual.</p></details>
 
-        <details><summary>How many numbers do I need to enter?</summary><p>For the fastest route, the calculator asks for four core inputs: tax year, net business profit, plan contribution rate, and the deduction for one-half of self-employment tax from Schedule 1, line 15. Additional fields appear only when elective deferrals or catch-up contributions apply.</p></details>
+<!-- PRODUCT / TAX TOOLKIT -->
 
-        <details><summary>Why do I need the deduction for one-half of self-employment tax?</summary><p>The IRS worksheet explicitly uses the deduction for self-employment tax from Schedule 1, Form 1040, line 15 as Step 2. Using that amount avoids making assumptions about the taxpayer's complete Schedule SE situation.</p></details>
+<section class="product-section" id="toolkit">
 
-        <details><summary>Does the calculator calculate the self-employed rate automatically?</summary><p>Yes. For whole-number contribution rates, the calculator uses the IRS Rate Table. For a rate such as 8.5%, it uses the Rate Worksheet formula and rounds the resulting self-employed rate to at least three decimal places before applying it to the deduction worksheet.</p></details>
+    <div class="container">
 
-        <details><summary>Can I use this for a SEP IRA?</summary><p>The IRS Publication 560 worksheet states that a SEP plan is treated as a profit-sharing plan for this worksheet. The IRS also cautions that the worksheet applies only to self-employed individuals with one defined contribution plan and should not be used for SARSEPs.</p></details>
+        <div class="product-card">
 
-        <details><summary>Is this an IRS calculator?</summary><p>No. This is an independent educational tool based on IRS publications and worksheets. It is not operated, endorsed, or approved by the IRS.</p></details>
+            <div class="coming-soon">
+                FULL TAX TOOLKIT
+            </div>
 
-        <details><summary>Why might my result differ from tax software?</summary><p>Tax software may have additional information about your tax return, other businesses, wages, plan participation, or special circumstances. This calculator is intentionally focused on the Publication 560 self-employed deduction worksheet and should be verified against your current tax forms and instructions.</p></details>
-      </article>
-    </section>
+            <h2>
+                Go Beyond the Free Calculator
+            </h2>
 
-    <section class="content-section">
-      <article class="content-card disclaimer-card">
-        <h2>Important disclaimer</h2>
-        <p>This calculator is for informational and educational purposes only. It is not tax, legal, accounting, investment, or financial advice and is not affiliated with, endorsed by, or approved by the U.S. Internal Revenue Service. Tax rules and contribution limits can change. Your actual deduction may differ because of facts this calculator does not collect. Verify your result using the current IRS forms and instructions or consult a qualified tax professional.</p>
-      </article>
-    </section>
-  </div>
-</main>
+            <p>
+                We're building a practical digital toolkit
+                designed to help self-employed individuals
+                organize their tax and retirement planning
+                calculations.
+            </p>
 
-<footer class="footer">
-  <div class="container">
-    <strong>Self-Employed Deduction Calculator</strong>
-    <p>Independent educational tool. Not affiliated with or endorsed by the IRS.</p>
-    <small>© <span id="footerYear"></span> Self-Employed Deduction Calculator</small>
-  </div>
+
+            <div class="product-list">
+
+                <div>
+                    Self-employed deduction worksheet
+                </div>
+
+                <div>
+                    Tax planning worksheets
+                </div>
+
+                <div>
+                    Retirement contribution planning tools
+                </div>
+
+                <div>
+                    Easy-to-use calculation spreadsheets
+                </div>
+
+                <div>
+                    Printable planning resources
+                </div>
+
+                <div>
+                    Practical self-employed tax resources
+                </div>
+
+            </div>
+
+
+            <!-- PAYMENT LINK WILL BE ADDED LATER -->
+
+            <a href="#buy" class="btn-primary">
+                Get the Full Tax Toolkit →
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- FAQ -->
+
+<section id="faq">
+
+    <div class="container">
+
+        <div class="section-title">
+
+            <h2>
+                Frequently Asked Questions
+            </h2>
+
+        </div>
+
+
+        <div class="faq">
+
+            <div class="faq-item">
+
+                <h3>
+                    Is the calculator free?
+                </h3>
+
+                <p>
+                    Yes. The basic self-employed deduction
+                    calculator is available without an account.
+                </p>
+
+            </div>
+
+
+            <div class="faq-item">
+
+                <h3>
+                    What is the calculator based on?
+                </h3>
+
+                <p>
+                    The calculator follows the worksheet-based
+                    calculation structure used for determining
+                    self-employed retirement plan deductions.
+                </p>
+
+            </div>
+
+
+            <div class="faq-item">
+
+                <h3>
+                    Do I need to install anything?
+                </h3>
+
+                <p>
+                    No. The web calculator can be used directly
+                    from your browser.
+                </p>
+
+            </div>
+
+
+            <div class="faq-item">
+
+                <h3>
+                    Is this tax advice?
+                </h3>
+
+                <p>
+                    No. This website provides calculation and
+                    educational tools and is not a substitute
+                    for professional tax advice.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- CTA -->
+
+<section class="cta">
+
+    <div class="container">
+
+        <h2>
+            Start With the Free Calculator
+        </h2>
+
+        <p>
+            Work through your calculation first, then explore
+            the complete toolkit when you're ready.
+        </p>
+
+        <a href="#calculator" class="btn-primary">
+            Calculate for Free →
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- DISCLAIMER -->
+
+<section class="disclaimer">
+
+    <div class="container">
+
+        <p>
+            <strong>Important:</strong>
+            This website and its calculators are provided for
+            educational and informational purposes only. They are
+            not affiliated with, endorsed by, or approved by the
+            Internal Revenue Service. Tax rules and limits can
+            change. Consult a qualified tax professional regarding
+            your individual circumstances.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <div class="container">
+
+        <div class="footer-content">
+
+            <div class="copyright">
+                © 2026 Self-Employed Tax Tools. All rights reserved.
+            </div>
+
+            <div class="footer-links">
+
+                <a href="privacy.html">
+                    Privacy
+                </a>
+
+                <a href="terms.html">
+                    Terms
+                </a>
+
+                <a href="contact.html">
+                    Contact
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
 </footer>
 
-<script src="scripts.js" defer></script>
 </body>
 </html>
